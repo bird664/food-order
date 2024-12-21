@@ -1,5 +1,5 @@
 import React, { useEffect, useReducer } from 'react'
-import { getAll, getAllByTag, getAllTags, search } from '../../services/foodServices';
+import { getAll, getAllByTag, getAllTags, search } from '../../services/foodService';
 import Thumbnails from '../../components/Thumbnails/Thumbnails';
 import { useParams } from 'react-router-dom';
 import Search from '../../components/Search/Search';
