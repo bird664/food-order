@@ -29,7 +29,7 @@ export default function FoodPage() {
      <div className={classess.container}>
     <img
     className={classess.image}
-    src={`/foods/${food.imageUrl}`}
+    src={`${food.imageUrl}`}
     alt={food.name}
     />
 
