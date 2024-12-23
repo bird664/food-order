@@ -1,8 +1,9 @@
 import axios from 'axios';
+
 export const setLoadingInterceptor = ({ showLoading, hideLoading }) => {
   axios.interceptors.request.use(
     req => {
-      showLoading();
+      if (!(req.data instanceof FormData)) showLoading();
       return req;
     },
     error => {
@@ -10,6 +11,7 @@ export const setLoadingInterceptor = ({ showLoading, hideLoading }) => {
       return Promise.reject(error);
     }
   );
+
   axios.interceptors.response.use(
     res => {
       hideLoading();
@@ -21,4 +23,5 @@ export const setLoadingInterceptor = ({ showLoading, hideLoading }) => {
     }
   );
 };
+
 export default setLoadingInterceptor;
