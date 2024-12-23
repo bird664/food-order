@@ -11,7 +11,7 @@ import PaymentPage from './pages/Payment/PaymentPage';
 import OrderTrackPage from './pages/OrderTrack/OrderTrackPage';
 import ProfilePage from './pages/Profile/ProfilePage';
 import OrdersPage from './pages/Orders/OrdersPage';
-
+import Dashboard from './pages/Dashboard/Dashboard';
 export default function AppRoutes() {
   return (
     <Routes>
@@ -59,6 +59,14 @@ export default function AppRoutes() {
         element={
           <AuthRoute>
             <OrdersPage />
+          </AuthRoute>
+        }
+      />
+       <Route
+        path="/dashboard"
+        element={
+          <AuthRoute>
+            <Dashboard />
           </AuthRoute>
         }
       />
