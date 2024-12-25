@@ -2,8 +2,10 @@ import React from 'react';
 import { useAuth } from '../../hooks/useAuth';
 import classes from './dashboard.module.css';
 import { Link } from 'react-router-dom';
+
 export default function Dashboard() {
   const { user } = useAuth();
+
   return (
     <div className={classes.container}>
       <div className={classes.menu}>
@@ -11,7 +13,7 @@ export default function Dashboard() {
           .filter(item => user.isAdmin || !item.forAdmin)
           .map(item => (
             <Link
-            key={item.title}
+              key={item.title}
               to={item.url}
               style={{
                 backgroundColor: item.bgColor,
@@ -26,6 +28,7 @@ export default function Dashboard() {
     </div>
   );
 }
+
 const allItems = [
   {
     title: 'Orders',

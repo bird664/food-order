@@ -7,15 +7,16 @@ import { BrowserRouter } from 'react-router-dom';
 import CartProvider from './hooks/useCart';
 import './axiosConfig';
 import { AuthProvider } from './hooks/useAuth';
-import { ToastContainer} from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { LoadingProvider } from './hooks/useLoading';
 import './interceptors/authInterceptor';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-    <LoadingProvider>
+      <LoadingProvider>
         <AuthProvider>
           <CartProvider>
             <App />

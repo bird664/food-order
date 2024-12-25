@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 axios.interceptors.request.use(
   req => {
     const user = localStorage.getItem('user');

@@ -17,19 +17,23 @@ export default function CheckoutPage() {
   const { user } = useAuth();
   const navigate = useNavigate();
   const [order, setOrder] = useState({ ...cart });
+
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
+
   const submit = async data => {
     if (!order.addressLatLng) {
       toast.warning('Please select your location on the map');
       return;
     }
+
     await createOrder({ ...order, name: data.name, address: data.address });
     navigate('/payment');
   };
+
   return (
     <>
       <form onSubmit={handleSubmit(submit)} className={classes.container}>
@@ -61,6 +65,7 @@ export default function CheckoutPage() {
             }}
           />
         </div>
+
         <div className={classes.buttons_container}>
           <div className={classes.buttons}>
             <Button

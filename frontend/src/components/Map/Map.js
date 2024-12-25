@@ -10,6 +10,7 @@ import {
 } from 'react-leaflet';
 import { toast } from 'react-toastify';
 import * as L from 'leaflet';
+
 export default function Map({ readonly, location, onChange }) {
   return (
     <div className={classes.container}>
@@ -35,8 +36,10 @@ export default function Map({ readonly, location, onChange }) {
     </div>
   );
 }
+
 function FindButtonAndMarker({ readonly, location, onChange }) {
   const [position, setPosition] = useState(location);
+
   useEffect(() => {
     if (readonly) {
       map.setView(position, 13);
@@ -44,6 +47,7 @@ function FindButtonAndMarker({ readonly, location, onChange }) {
     }
     if (position) onChange(position);
   }, [position]);
+
   const map = useMapEvents({
     click(e) {
       !readonly && setPosition(e.latlng);
@@ -56,6 +60,7 @@ function FindButtonAndMarker({ readonly, location, onChange }) {
       toast.error(e.message);
     },
   });
+
   const markerIcon = new L.Icon({
     iconUrl: '/marker-icon-2x.png',
     iconSize: [25, 41],
@@ -74,6 +79,7 @@ function FindButtonAndMarker({ readonly, location, onChange }) {
           Find My Location
         </button>
       )}
+
       {position && (
         <Marker
           eventHandlers={{

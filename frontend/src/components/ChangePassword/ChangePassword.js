@@ -4,6 +4,7 @@ import Title from '../Title/Title';
 import Input from '../Input/Input';
 import Button from '../Button/Button';
 import { useAuth } from '../../hooks/useAuth';
+
 export default function ChangePassword() {
   const {
     handleSubmit,
@@ -11,10 +12,12 @@ export default function ChangePassword() {
     getValues,
     formState: { errors },
   } = useForm();
+
   const { changePassword } = useAuth();
   const submit = passwords => {
     changePassword(passwords);
   };
+
   return (
     <div>
       <Title title="Change Password" />
@@ -27,6 +30,7 @@ export default function ChangePassword() {
           })}
           error={errors.currentPassword}
         />
+
         <Input
           type="password"
           label="New Password"
@@ -36,6 +40,7 @@ export default function ChangePassword() {
           })}
           error={errors.newPassword}
         />
+
         <Input
           type="password"
           label="Confirm Password"
@@ -48,6 +53,7 @@ export default function ChangePassword() {
           })}
           error={errors.confirmNewPassword}
         />
+
         <Button type="submit" text="Change" />
       </form>
     </div>

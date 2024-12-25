@@ -5,21 +5,15 @@ import Title from '../../components/Title/Title';
 import OrderItemsList from '../../components/OrderItemsList/OrderItemsList';
 import Map from '../../components/Map/Map';
 import PaypalButtons from '../../components/PaypalButtons/PaypalButtons';
-import { toast } from 'react-toastify';
 
 export default function PaymentPage() {
   const [order, setOrder] = useState();
 
   useEffect(() => {
-    getNewOrderForCurrentUser()
-      .then(data => setOrder(data))
-      .catch(error => {
-        console.error('Error fetching order:', error.response?.data || error.message);
-        toast.error('Failed to fetch the order. Please try again.');
-      });
+    getNewOrderForCurrentUser().then(data => setOrder(data));
   }, []);
 
-  if (!order) return <div>Loading...</div>;
+  if (!order) return;
 
   return (
     <>
@@ -38,10 +32,12 @@ export default function PaymentPage() {
           </div>
           <OrderItemsList order={order} />
         </div>
+
         <div className={classes.map}>
           <Title title="Your Location" fontSize="1.6rem" />
           <Map readonly={true} location={order.addressLatLng} />
         </div>
+
         <div className={classes.buttons_container}>
           <div className={classes.buttons}>
             <PaypalButtons order={order} />

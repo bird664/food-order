@@ -7,17 +7,21 @@ import DateTime from '../../components/DateTime/DateTime';
 import OrderItemsList from '../../components/OrderItemsList/OrderItemsList';
 import Title from '../../components/Title/Title';
 import Map from '../../components/Map/Map';
+
 export default function OrderTrackPage() {
   const { orderId } = useParams();
   const [order, setOrder] = useState();
+
   useEffect(() => {
     orderId &&
       trackOrderById(orderId).then(order => {
         setOrder(order);
       });
   }, []);
+
   if (!orderId)
     return <NotFound message="Order Not Found" linkText="Go To Home Page" />;
+
   return (
     order && (
       <div className={classes.container}>
@@ -47,12 +51,15 @@ export default function OrderTrackPage() {
               </div>
             )}
           </div>
+
           <OrderItemsList order={order} />
         </div>
+
         <div>
           <Title title="Your Location" fontSize="1.6rem" />
           <Map location={order.addressLatLng} readonly={true} />
         </div>
+
         {order.status === 'NEW' && (
           <div className={classes.payment}>
             <Link to="/payment">Go To Payment</Link>

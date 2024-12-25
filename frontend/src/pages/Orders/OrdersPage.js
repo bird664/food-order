@@ -6,6 +6,7 @@ import Title from '../../components/Title/Title';
 import DateTime from '../../components/DateTime/DateTime';
 import Price from '../../components/Price/Price';
 import NotFound from '../../components/NotFound/NotFound';
+
 const initialState = {};
 const reducer = (state, action) => {
   const { type, payload } = action;
@@ -18,9 +19,12 @@ const reducer = (state, action) => {
       return state;
   }
 };
+
 export default function OrdersPage() {
   const [{ allStatus, orders }, dispatch] = useReducer(reducer, initialState);
+
   const { filter } = useParams();
+
   useEffect(() => {
     getAllStatus().then(status => {
       dispatch({ type: 'ALL_STATUS_FETCHED', payload: status });
@@ -29,9 +33,11 @@ export default function OrdersPage() {
       dispatch({ type: 'ORDERS_FETCHED', payload: orders });
     });
   }, [filter]);
+
   return (
     <div className={classes.container}>
       <Title title="Orders" margin="1.5rem 0 0 .2rem" fontSize="1.9rem" />
+
       {allStatus && (
         <div className={classes.all_status}>
           <Link to="/orders" className={!filter ? classes.selected : ''}>
@@ -48,12 +54,14 @@ export default function OrdersPage() {
           ))}
         </div>
       )}
+
       {orders?.length === 0 && (
         <NotFound
           linkRoute={filter ? '/orders' : '/'}
           linkText={filter ? 'Show All' : 'Go To Home Page'}
         />
       )}
+
       {orders &&
         orders.map(order => (
           <div key={order.id} className={classes.order_summary}>

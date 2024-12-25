@@ -6,16 +6,20 @@ import Title from '../../components/Title/Title';
 import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
 import ChangePassword from '../../components/ChangePassword/ChangePassword';
+
 export default function ProfilePage() {
   const {
     handleSubmit,
     register,
     formState: { errors },
   } = useForm();
+
   const { user, updateProfile } = useAuth();
+
   const submit = user => {
     updateProfile(user);
   };
+
   return (
     <div className={classes.container}>
       <div className={classes.details}>
@@ -41,8 +45,10 @@ export default function ProfilePage() {
             })}
             error={errors.address}
           />
+
           <Button type="submit" text="Update" backgroundColor="#009e84" />
         </form>
+
         <ChangePassword />
       </div>
     </div>

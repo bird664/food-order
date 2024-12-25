@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './starRating.module.css';
-export default function StarRating({ stars, size = 18 }) {
+export default function StarRating({ stars, size }) {
   const styles = {
     width: size + 'px',
     height: size + 'px',

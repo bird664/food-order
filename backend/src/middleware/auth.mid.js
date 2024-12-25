@@ -1,24 +1,16 @@
-import { createRequire } from 'module';
-const require = createRequire(import.meta.url);
-const { verify } = require('jsonwebtoken');
-import { UNAUTHORIZED } from '../constants/httpStatus.js'; // Đảm bảo định nghĩa UNAUTHORIZED
+import { verify } from 'jsonwebtoken';
+import { UNAUTHORIZED } from '../constants/httpStatus.js';
 
 export default (req, res, next) => {
   const token = req.headers.access_token;
-
-  if (!token) {
-    console.error('Token is missing in headers');
-    return res.status(401).send({ message: 'Access token is missing' });
-  }
+  if (!token) return res.status(UNAUTHORIZED).send();
 
   try {
     const decoded = verify(token, process.env.JWT_SECRET);
     req.user = decoded;
   } catch (error) {
-    console.error('Invalid or expired token:', error.message);
-    return res.status(401).send({ message: 'Invalid or expired token' });
+    res.status(UNAUTHORIZED).send();
   }
 
-  next();
+  return next();
 };
-
