@@ -10,7 +10,8 @@ export default function Price({ price, locale, currency }) {
   return <span>{formatPrice()}</span>;
 }
 
+// Thiết lập giá trị mặc định để hiển thị tiền Việt Nam
 Price.defaultProps = {
-  locale: 'en-US',
-  currency: 'USD',
+  locale: 'vi-VN',
+  currency: 'VND',
 };
